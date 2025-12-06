@@ -86,6 +86,12 @@ Any public subreddit with image posts! Popular choices:
 - `spaceporn` - Space and astronomy images
 - `itookapicture` - Photography
 
+## Support & Feedback
+
+Found a bug or have a suggestion? Please [open an issue](https://github.com/saihgupr/reddit_images/issues) to report it.
+
+If you like this integration, please give it a star on GitHub! ⭐
+
 ## License
 
 MIT License
