@@ -1,10 +1,27 @@
-# Reddit Images
+# Reddit Images <img src="icon.png" alt="Reddit Images" width="50" align="left" style="margin-right: 10px;"/>
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 
 A Home Assistant integration that displays random images from any subreddit on your dashboard.
 
-![Reddit Images](icon.png)
+## Screenshots
+
+### Multiple Subreddits Example
+![Multiple Subreddits](images/redditview.png)
+
+### Individual Subreddit Examples
+<table>
+  <tr>
+    <td><img src="images/rarepuppers.png" alt="r/rarepuppers" width="300"/></td>
+    <td><img src="images/earthporn.png" alt="r/earthporn" width="300"/></td>
+    <td><img src="images/aww.png" alt="r/aww" width="300"/></td>
+  </tr>
+  <tr>
+    <td align="center">r/rarepuppers</td>
+    <td align="center">r/earthporn</td>
+    <td align="center">r/aww</td>
+  </tr>
+</table>
 
 ## Features
 
