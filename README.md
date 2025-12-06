@@ -5,7 +5,7 @@
 
 <br clear="left"/>
 
-A Home Assistant integration that displays random images from any subreddit on your dashboard.
+A Home Assistant integration that displays the top images from any subreddit on your dashboard.
 
 ## Screenshots
 
