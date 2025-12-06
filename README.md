@@ -70,25 +70,6 @@ show_state: false
 
 Replace `rarepuppers` with your configured subreddit name.
 
-### Multiple Subreddits Example
-
-```yaml
-type: horizontal-stack
-cards:
-  - type: picture-entity
-    entity: image.reddit_images_rarepuppers
-    show_name: false
-    show_state: false
-  - type: picture-entity
-    entity: image.reddit_images_earthporn
-    show_name: false
-    show_state: false
-  - type: picture-entity
-    entity: image.reddit_images_aww
-    show_name: false
-    show_state: false
-```
-
 ## How It Works
 
 1. Fetches the top posts from the configured subreddit (last 24 hours)
