@@ -1,0 +1,12 @@
+{
+  "domain": "reddit_images",
+  "name": "Reddit Images",
+  "codeowners": [],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/chrislapointe/rare_puppers",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/chrislapointe/rare_puppers/issues",
+  "requirements": [],
+  "version": "2.0.0"
+}
