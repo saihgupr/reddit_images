@@ -12,6 +12,7 @@ A Home Assistant integration that displays random images from any subreddit on y
 - ⏰ Configurable update interval
 - 🔄 Randomly selects from top posts of the day
 - 🏠 Works with `picture-entity` card out of the box
+- 📚 **Add multiple entities for different subreddits**
 
 ## Installation
 
@@ -40,6 +41,8 @@ A Home Assistant integration that displays random images from any subreddit on y
    - **Limit**: Number of top posts to consider (default: 20)
    - **Interval (Minutes)**: How often to fetch a new image (default: 60)
 
+**Tip**: You can add the integration multiple times to create separate entities for different subreddits!
+
 ## Usage
 
 Add a `picture-entity` card to your Lovelace dashboard:
@@ -52,6 +55,25 @@ show_state: false
 ```
 
 Replace `rarepuppers` with your configured subreddit name.
+
+### Multiple Subreddits Example
+
+```yaml
+type: horizontal-stack
+cards:
+  - type: picture-entity
+    entity: image.reddit_images_rarepuppers
+    show_name: false
+    show_state: false
+  - type: picture-entity
+    entity: image.reddit_images_earthporn
+    show_name: false
+    show_state: false
+  - type: picture-entity
+    entity: image.reddit_images_aww
+    show_name: false
+    show_state: false
+```
 
 ## How It Works
 
