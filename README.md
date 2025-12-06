@@ -1,6 +1,9 @@
-# Reddit Images <img src="icon.png" alt="Reddit Images" width="50" align="left" style="margin-right: 10px;"/>
+<h1>
+  <img src="icon.png" alt="Reddit Images" width="50" align="left" style="margin-right: 10px;"/>
+  Reddit Images
+</h1>
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+<br clear="left"/>
 
 A Home Assistant integration that displays random images from any subreddit on your dashboard.
 
