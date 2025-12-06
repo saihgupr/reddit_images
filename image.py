@@ -11,7 +11,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.event import async_track_time_interval
 from homeassistant.util import dt as dt_util
 
-from .const import CONF_SUBREDDIT, CONF_LIMIT, CONF_INTERVAL, DEFAULT_INTERVAL
+from .const import CONF_SUBREDDIT, CONF_LIMIT, CONF_INTERVAL, CONF_SELECTION_MODE, DEFAULT_INTERVAL, DEFAULT_SELECTION_MODE, MODE_TOP
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -24,8 +24,9 @@ async def async_setup_entry(
     subreddit = entry.data[CONF_SUBREDDIT]
     limit = entry.data[CONF_LIMIT]
     interval = entry.data.get(CONF_INTERVAL, DEFAULT_INTERVAL)
+    selection_mode = entry.data.get(CONF_SELECTION_MODE, DEFAULT_SELECTION_MODE)
 
-    async_add_entities([RedditImageEntity(hass, subreddit, limit, interval, entry.entry_id)], True)
+    async_add_entities([RedditImageEntity(hass, subreddit, limit, interval, selection_mode, entry.entry_id)], True)
 
 
 class RedditImageEntity(ImageEntity):
@@ -33,12 +34,13 @@ class RedditImageEntity(ImageEntity):
     
     _attr_should_poll = False
 
-    def __init__(self, hass: HomeAssistant, subreddit: str, limit: int, interval: int, entry_id: str) -> None:
+    def __init__(self, hass: HomeAssistant, subreddit: str, limit: int, interval: int, selection_mode: str, entry_id: str) -> None:
         """Initialize the image entity."""
         super().__init__(hass)
         self._subreddit = subreddit
         self._limit = limit
         self._interval = interval
+        self._selection_mode = selection_mode
         self._entry_id = entry_id
         
         self._attr_name = f"Reddit Images {subreddit}"
@@ -96,7 +98,9 @@ class RedditImageEntity(ImageEntity):
                             valid_posts.append(post_url)
                     
                     if valid_posts:
-                        new_url = random.choice(valid_posts)
+                        # Top mode: always use highest upvoted (first in list)
+                        # Random mode: pick randomly from top posts for variety
+                        new_url = valid_posts[0] if self._selection_mode == MODE_TOP else random.choice(valid_posts)
                         # We force update if we found anything, even if it's the same URL, 
                         # to ensure the timestamp updates and demonstrates "activity"
                         self._current_image_url = new_url
