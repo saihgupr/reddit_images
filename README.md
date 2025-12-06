@@ -2,7 +2,7 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 
-A Home Assistant integration that displays random images from any subreddit on your dashboard.
+A Home Assistant integration that displays random images from any subreddit on your dashboard!
 
 ![Reddit Images](icon.png)
 
