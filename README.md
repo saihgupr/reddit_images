@@ -6,30 +6,24 @@ A Home Assistant integration that displays random images from any subreddit on y
 
 ## Screenshots
 
-### Multiple Subreddits Example
-![Multiple Subreddits](images/redditview.png)
-
-### Individual Subreddit Examples
 <table>
   <tr>
-    <td><img src="images/rarepuppers.png" alt="r/rarepuppers" width="300"/></td>
-    <td><img src="images/earthporn.png" alt="r/earthporn" width="300"/></td>
-    <td><img src="images/aww.png" alt="r/aww" width="300"/></td>
+    <td><img src="images/redditview.png" width="400"/></td>
+    <td><img src="images/rarepuppers.png" width="400"/></td>
   </tr>
   <tr>
-    <td align="center">r/rarepuppers</td>
-    <td align="center">r/earthporn</td>
-    <td align="center">r/aww</td>
+    <td><img src="images/earthporn.png" width="400"/></td>
+    <td><img src="images/aww.png" width="400"/></td>
   </tr>
 </table>
 
 ## Features
 
-- 🖼️ Display images from any subreddit
-- ⏰ Configurable update interval
-- 🔄 Randomly selects from top posts of the day
-- 🏠 Works with `picture-entity` card out of the box
-- 📚 **Add multiple entities for different subreddits**
+- Display images from any subreddit
+- Configurable update interval
+- Randomly selects from top posts of the day
+- Works with `picture-entity` card out of the box
+- **Add multiple entities for different subreddits**
 
 ## Installation
 
