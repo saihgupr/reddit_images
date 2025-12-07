@@ -24,9 +24,9 @@ A Home Assistant integration that displays the top images from any subreddit on 
 
 - Display images from any subreddit
 - Configurable update interval
-- **Two selection modes**: Random from top posts, or show the #1 top post
+- Choose a random top post or show the #1 post
 - Works with `picture-entity` card out of the box
-- **Add multiple entities for different subreddits**
+- Add multiple entities for different subreddits
 
 ## Installation
 
