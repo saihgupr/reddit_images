@@ -1,12 +1,14 @@
 {
     "domain": "reddit_images",
     "name": "Reddit Images",
-    "codeowners": [],
+    "codeowners": [
+        "@saihgupr"
+    ],
     "config_flow": true,
     "dependencies": [],
-    "documentation": "https://github.com/chrislapointe/reddit_images",
+    "documentation": "https://github.com/saihgupr/reddit_images",
     "iot_class": "cloud_polling",
-    "issue_tracker": "https://github.com/chrislapointe/reddit_images/issues",
+    "issue_tracker": "https://github.com/saihgupr/reddit_images/issues",
     "requirements": [],
     "version": "2.0.0"
 }

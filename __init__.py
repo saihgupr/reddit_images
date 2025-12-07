@@ -1,4 +1,4 @@
-"""The Rare Puppers integration."""
+"""The Reddit Images integration."""
 from __future__ import annotations
 
 from homeassistant.config_entries import ConfigEntry
@@ -10,7 +10,7 @@ from .const import DOMAIN
 PLATFORMS: list[Platform] = [Platform.IMAGE]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up Rare Puppers from a config entry."""
+    """Set up Reddit Images from a config entry."""
     
     # Store the config entry for access if needed
     hass.data.setdefault(DOMAIN, {})
