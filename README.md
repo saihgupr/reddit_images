@@ -24,7 +24,7 @@ A Home Assistant integration that displays the top images from any subreddit on 
 
 - Display images from any subreddit
 - Configurable update interval
-- Randomly selects from top posts of the day
+- **Two selection modes**: Random from top posts, or show the #1 top post
 - Works with `picture-entity` card out of the box
 - **Add multiple entities for different subreddits**
 
@@ -54,6 +54,9 @@ A Home Assistant integration that displays the top images from any subreddit on 
    - **Subreddit**: The subreddit to pull images from (e.g., `rarepuppers`, `earthporn`, `aww`)
    - **Limit**: Number of top posts to consider (default: 20)
    - **Interval (Minutes)**: How often to fetch a new image (default: 60)
+   - **Selection Mode**:
+     - *Random from Top*: Randomly picks an image from the top posts
+     - *Top Post*: Always shows the #1 highest-upvoted image
 
 **Tip**: You can add the integration multiple times to create separate entities for different subreddits!
 
@@ -74,7 +77,7 @@ Replace `rarepuppers` with your configured subreddit name.
 
 1. Fetches the top posts from the configured subreddit (last 24 hours)
 2. Filters for direct image links (.jpg, .jpeg, .png)
-3. Randomly selects one image from the pool
+3. Selects an image based on your chosen mode (random or top)
 4. Updates at your configured interval
 
 ## Supported Subreddits
