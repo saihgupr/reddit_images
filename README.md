@@ -9,10 +9,10 @@ A Home Assistant integration that displays the top images from any subreddit on 
 
 ## Screenshots
 
-![Screenshot](images/redditview.png)
-![Screenshot](images/rarepuppers.png)
-![Screenshot](images/earthporn.png)
-![Screenshot](images/aww.png)
+<img src="images/redditview.png" width="400" />
+<img src="images/rarepuppers.png" width="400" />
+<img src="images/earthporn.png" width="400" />
+<img src="images/aww.png" width="400" />
 
 ## Features
 
