@@ -11,12 +11,12 @@ A Home Assistant integration that displays the top images from any subreddit on 
 
 <table>
   <tr>
-    <td><img src="images/redditview.png" width="400" /></td>
-    <td><img src="images/rarepuppers.png" width="400" /></td>
+    <td><img src="https://raw.githubusercontent.com/saihgupr/reddit_images/main/images/redditview.png" width="400" /></td>
+    <td><img src="https://raw.githubusercontent.com/saihgupr/reddit_images/main/images/rarepuppers.png" width="400" /></td>
   </tr>
   <tr>
-    <td><img src="images/earthporn.png" width="400" /></td>
-    <td><img src="images/aww.png" width="400" /></td>
+    <td><img src="https://raw.githubusercontent.com/saihgupr/reddit_images/main/images/earthporn.png" width="400" /></td>
+    <td><img src="https://raw.githubusercontent.com/saihgupr/reddit_images/main/images/aww.png" width="400" /></td>
   </tr>
 </table>
 
