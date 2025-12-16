@@ -1,30 +1,22 @@
 <h1>
-  <img src="custom_components/reddit_images/icon.png" alt="Reddit Images" width="50" align="left" style="margin-right: 10px;"/>
+  <img src="https://raw.githubusercontent.com/saihgupr/reddit_images/main/custom_components/reddit_images/icon.png" alt="Reddit Images" width="50" align="left" style="margin-right: 10px;"/>
   Reddit Images
 </h1>
 
 <br clear="left"/>
 
-[![HACS Custom][hacs-badge]][hacs-url]
-[![GitHub Release][release-badge]][release-url]
-
 A Home Assistant integration that displays the top images from any subreddit on your dashboard.
-
-[hacs-badge]: https://img.shields.io/badge/HACS-Custom-41BDF5.svg
-[hacs-url]: https://github.com/hacs/integration
-[release-badge]: https://img.shields.io/github/v/release/saihgupr/reddit_images
-[release-url]: https://github.com/saihgupr/reddit_images/releases
 
 ## Screenshots
 
 <table>
   <tr>
-    <td><img src="images/redditview.png" width="400"/></td>
-    <td><img src="images/rarepuppers.png" width="400"/></td>
+    <td><img src="https://raw.githubusercontent.com/saihgupr/reddit_images/main/images/redditview.png" width="400"/></td>
+    <td><img src="https://raw.githubusercontent.com/saihgupr/reddit_images/main/images/rarepuppers.png" width="400"/></td>
   </tr>
   <tr>
-    <td><img src="images/earthporn.png" width="400"/></td>
-    <td><img src="images/aww.png" width="400"/></td>
+    <td><img src="https://raw.githubusercontent.com/saihgupr/reddit_images/main/images/earthporn.png" width="400"/></td>
+    <td><img src="https://raw.githubusercontent.com/saihgupr/reddit_images/main/images/aww.png" width="400"/></td>
   </tr>
 </table>
 
