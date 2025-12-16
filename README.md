@@ -5,7 +5,15 @@
 
 <br clear="left"/>
 
+[![HACS Custom][hacs-badge]][hacs-url]
+[![GitHub Release][release-badge]][release-url]
+
 A Home Assistant integration that displays the top images from any subreddit on your dashboard.
+
+[hacs-badge]: https://img.shields.io/badge/HACS-Custom-41BDF5.svg
+[hacs-url]: https://github.com/hacs/integration
+[release-badge]: https://img.shields.io/github/v/release/saihgupr/reddit_images
+[release-url]: https://github.com/saihgupr/reddit_images/releases
 
 ## Screenshots
 
@@ -32,12 +40,18 @@ A Home Assistant integration that displays the top images from any subreddit on 
 
 ### HACS (Recommended)
 
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=saihgupr&repository=reddit_images&category=integration)
+
+**Or manually add the custom repository:**
+
 1. Open HACS in Home Assistant
-2. Click the three dots menu (top right) → **Custom repositories**
-3. Add this repository URL and select **Integration** as the category
-4. Click **Add**
-5. Search for "Reddit Images" and install
-6. Restart Home Assistant
+2. Click the **three dots menu** (⋮) in the top right corner
+3. Select **Custom repositories**
+4. Enter the repository URL: `https://github.com/saihgupr/reddit_images`
+5. Select **Integration** as the category
+6. Click **Add**
+7. Search for "**Reddit Images**" in HACS and click **Download**
+8. Restart Home Assistant
 
 ### Manual Installation
 
