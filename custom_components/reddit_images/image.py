@@ -1,6 +1,8 @@
 """Image platform for Reddit Images."""
 import logging
 import random
+import re
+import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 
 from homeassistant.components.image import ImageEntity
@@ -75,7 +77,7 @@ class RedditImageEntity(ImageEntity):
 
     async def _update_image(self, now) -> None:
         """Fetch new image URL from Reddit."""
-        url = f"https://www.reddit.com/r/{self._subreddit}/top.json?sort=hot&t=day&limit={self._limit}"
+        url = f"https://www.reddit.com/r/{self._subreddit}/top.rss?t=day"
         
         # Reddit requires a specific User-Agent format to not block scripts
         # Format: <platform>:<app ID>:<version string> (by /u/<reddit username>)
@@ -86,16 +88,48 @@ class RedditImageEntity(ImageEntity):
         try:
             async with session.get(url, headers=headers) as response:
                 if response.status == 200:
-                    data = await response.json()
-                    children = data.get("data", {}).get("children", [])
+                    xml_content = await response.text()
+                    try:
+                        root = ET.fromstring(xml_content)
+                    except ET.ParseError as parse_err:
+                        _LOGGER.error("Error parsing Reddit RSS XML: %s", parse_err)
+                        return
+                    
+                    ns = {
+                        'atom': 'http://www.w3.org/2005/Atom',
+                        'media': 'http://search.yahoo.com/mrss/'
+                    }
+                    entries = root.findall('atom:entry', ns)
                     
                     valid_posts = []
-                    for child in children:
-                        post = child.get("data", {})
-                        post_url = post.get("url", "")
-                        # Validate it's an image
-                        if post_url.lower().endswith((".jpg", ".jpeg", ".png")):
-                            valid_posts.append(post_url)
+                    for entry in entries:
+                        content_elem = entry.find('atom:content', ns)
+                        content_html = content_elem.text if content_elem is not None else ""
+                        
+                        src_urls = re.findall(r'<img[^>]+src="([^"]+)"', content_html)
+                        href_urls = re.findall(r'<a[^>]+href="([^"]+)"', content_html)
+                        
+                        best_image = None
+                        
+                        # Look at hrefs first (usually high-resolution direct links)
+                        for href in href_urls:
+                            href_clean = href.replace("&amp;", "&")
+                            if "i.redd.it" in href_clean or href_clean.split('?')[0].lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.webp')):
+                                best_image = href_clean
+                                break
+                        
+                        # If no direct link, use image src (usually preview/thumbnail)
+                        if not best_image:
+                            for src in src_urls:
+                                src_clean = src.replace("&amp;", "&")
+                                if "preview.redd.it" in src_clean or "external-preview.redd.it" in src_clean or src_clean.split('?')[0].lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.webp')):
+                                    best_image = src_clean
+                                    break
+                                    
+                        if best_image:
+                            valid_posts.append(best_image)
+                    
+                    valid_posts = valid_posts[:self._limit]
                     
                     if valid_posts:
                         # Top mode: always use highest upvoted (first in list)
@@ -109,7 +143,7 @@ class RedditImageEntity(ImageEntity):
                         self._last_image_update = dt_util.utcnow()
                         self.async_write_ha_state()
                     else:
-                         _LOGGER.warning("No valid images (jpg/png) found in top %s posts of r/%s", self._limit, self._subreddit)
+                          _LOGGER.warning("No valid images found in top %s posts of r/%s", self._limit, self._subreddit)
                 else:
                     _LOGGER.warning("Reddit error %s for r/%s", response.status, self._subreddit)
         except Exception as err:
@@ -123,9 +157,10 @@ class RedditImageEntity(ImageEntity):
         if self._current_image_bytes:
             return self._current_image_bytes
             
+        headers = {"User-Agent": "python:homeassistant.reddit_images:v2.0.0 (by /u/homeassistant_user)"}
         session = async_get_clientsession(self.hass)
         try:
-            async with session.get(self._current_image_url) as response:
+            async with session.get(self._current_image_url, headers=headers) as response:
                 if response.status == 200:
                     self._current_image_bytes = await response.read()
                     return self._current_image_bytes
