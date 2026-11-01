@@ -1,5 +1,5 @@
 <h1>
-  <img src="https://raw.githubusercontent.com/saihgupr/reddit_images/main/custom_components/reddit_images/icon.png" alt="Reddit Images" width="50" align="left" style="margin-right: 10px;"/>
+  <img src="https://raw.githubusercontent.com/saihgupr/reddit_images/main/custom_components/reddit_images/brand/icon.png" alt="Reddit Images" width="50" align="left" style="margin-right: 10px;"/>
   Reddit Images
 </h1>
 

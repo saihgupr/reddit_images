@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.10] - 2026-11-01
+
+### Added
+- Added `brand/` directory containing `icon.png`, `icon@2x.png`, `logo.png`, and `logo@2x.png` for Home Assistant and HACS default catalog compliance.
+
+## [1.0.9] - 2026-08-05
+
+### Added
+- Added HACS and Hassfest GitHub Actions workflows.
+
 ## [1.0.8] - 2026-06-05
 
 ### Fixed
