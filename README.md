@@ -5,7 +5,11 @@
 
 <br clear="left"/>
 
-A Home Assistant integration that displays the top images from any subreddit on your dashboard.
+A Home Assistant integration that displays the top images from any subreddit on your dashboard. Point a `picture-entity` card at the generated `image` entity and you get a rotating photo frame that updates on its own.
+
+<a href="https://my.home-assistant.io/redirect/marketplace_repository/?owner=saihgupr&repository=reddit_images&category=integration">
+  <img src="https://my.home-assistant.io/badges/marketplace_repository.svg" alt="Open this repository in the Home Assistant Marketplace" />
+</a>
 
 ## Screenshots
 
@@ -16,15 +20,26 @@ A Home Assistant integration that displays the top images from any subreddit on 
 
 ## Features
 
-- Display images from any subreddit
-- Configurable update interval
-- Choose randomly selected top posts or show the top post of the day
-- Works with `picture-entity` card out of the box
-- Add multiple entities for different subreddits
+- Display images from any public subreddit
+- Two selection modes: random from the top posts, or always the top post of the day
+- Configurable scan depth and refresh interval
+- Works with the `picture-entity` card out of the box
+- Add the integration multiple times for separate entities per subreddit
+- Reads Reddit's public Atom/RSS feeds, so no account, API key, or token is needed
+- Brand icons included, so it shows up correctly in the Marketplace and in Devices & Services
 
 ## Installation
 
-### HACS (Recommended)
+### Marketplace (recommended, Home Assistant 2026.11 and newer)
+
+1. Go to **Settings** → **Marketplace**
+2. Search for **Reddit Images**
+3. Open the result and select **Download**
+4. Home Assistant continues straight into the setup flow. If it does not, go to **Settings** → **Devices & services** → **Add integration** and search for **Reddit Images**
+
+No restart needed.
+
+### HACS (Home Assistant 2026.10 and older)
 
 <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=saihgupr&repository=reddit_images&category=integration">
   <img src="https://my.home-assistant.io/badges/hacs_repository.svg" alt="Open your Home Assistant instance and open a repository inside the Home Assistant Community Store." />
@@ -41,6 +56,8 @@ A Home Assistant integration that displays the top images from any subreddit on 
 7. Search for "**Reddit Images**" in HACS and click **Download**
 8. Restart Home Assistant
 
+HACS was merged into Home Assistant as the Marketplace in 2026.11. Everything installed through HACS carries over automatically.
+
 ### Manual Installation
 
 1. Download the `reddit_images` folder from this repository
@@ -49,8 +66,8 @@ A Home Assistant integration that displays the top images from any subreddit on 
 
 ## Configuration
 
-1. Go to **Settings** → **Devices & Services**
-2. Click **Add Integration**
+1. Go to **Settings** → **Devices & services**
+2. Click **Add integration**
 3. Search for "Reddit Images"
 4. Configure:
    - **Subreddit**: The subreddit to pull images from (e.g., `rarepuppers`, `earthporn`, `aww`)
@@ -60,7 +77,7 @@ A Home Assistant integration that displays the top images from any subreddit on 
      - *Random from Top*: Randomly picks an image from the top posts
      - *Top Post*: Always shows the #1 highest-upvoted image
 
-**Tip**: You can add the integration multiple times to create separate entities for different subreddits!
+**Tip**: You can add the integration multiple times to create separate entities for different subreddits.
 
 ## Usage
 
@@ -77,14 +94,17 @@ Replace `rarepuppers` with your configured subreddit name.
 
 ## How It Works
 
-1. Fetches the top posts from the configured subreddit (last 24 hours)
-2. Filters for direct image links (.jpg, .jpeg, .png)
-3. Selects an image based on your chosen mode (random or top)
-4. Updates at your configured interval
+1. Fetches the top posts from the configured subreddit (last 24 hours) via the public `.rss` feed
+2. Extracts the highest resolution image from each post, preferring direct `i.redd.it` links and falling back to preview images
+3. Handles single image posts, gallery posts, and video thumbnails, including `.jpg`, `.jpeg`, `.png`, `.gif`, and `.webp`
+4. Selects an image based on your chosen mode (random or top)
+5. Downloads it and refreshes at your configured interval
+
+Reddit started returning `403 Forbidden` for unauthenticated `.json` requests, which is why the integration uses the Atom/RSS feeds instead. No credentials are required.
 
 ## Supported Subreddits
 
-Any public subreddit with image posts! Popular choices:
+Any public subreddit with image posts. Popular choices:
 - `rarepuppers` - Adorable dogs
 - `aww` - Cute animals
 - `earthporn` - Beautiful landscapes (SFW)
@@ -95,7 +115,7 @@ Any public subreddit with image posts! Popular choices:
 
 Found a bug or have a suggestion? Please [open an issue](https://github.com/saihgupr/reddit_images/issues) to report it.
 
-If you like this integration, please give it a star on GitHub! ⭐
+If you like this integration, please give it a star on GitHub!
 
 ## License
 

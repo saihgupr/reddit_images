@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+- README updated for the Home Assistant Marketplace (HACS was merged into Home Assistant as the Marketplace in 2026.11): new install steps, Marketplace badge, and refreshed feature and how-it-works notes.
+
 ## [1.0.10] - 2026-11-01
 
 ### Added
