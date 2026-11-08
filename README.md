@@ -1,15 +1,12 @@
-<h1>
-  <img src="https://raw.githubusercontent.com/saihgupr/reddit_images/main/custom_components/reddit_images/brand/icon.png" alt="Reddit Images" width="50" align="left" style="margin-right: 10px;"/>
-  Reddit Images
-</h1>
-
-<br clear="left"/>
-
-A Home Assistant integration that displays the top images from any subreddit on your dashboard. Point a `picture-entity` card at the generated `image` entity and you get a rotating photo frame that updates on its own.
+# Reddit Images
 
 <a href="https://my.home-assistant.io/redirect/marketplace_repository/?owner=saihgupr&repository=reddit_images&category=integration">
   <img src="https://my.home-assistant.io/badges/marketplace_repository.svg" alt="Open this repository in the Home Assistant Marketplace" />
 </a>
+
+## About
+
+Reddit Images is a Home Assistant integration that displays the top images from any subreddit on your dashboard. Point a `picture-entity` card at the generated `image` entity and you get a rotating photo frame that updates on its own.
 
 ## Screenshots
 
@@ -100,7 +97,7 @@ Replace `rarepuppers` with your configured subreddit name.
 4. Selects an image based on your chosen mode (random or top)
 5. Downloads it and refreshes at your configured interval
 
-Reddit started returning `403 Forbidden` for unauthenticated `.json` requests, which is why the integration uses the Atom/RSS feeds instead. No credentials are required.
+Reddit returns `403 Forbidden` for unauthenticated `.json` requests, which is why the integration uses the public Atom/RSS feeds instead. No credentials or API keys are required.
 
 ## Supported Subreddits
 
@@ -111,12 +108,37 @@ Any public subreddit with image posts. Popular choices:
 - `spaceporn` - Space and astronomy images
 - `itookapicture` - Photography
 
+## Troubleshooting & Debugging
+
+- **No image displayed**: Verify the subreddit has public image submissions and is spelled correctly. Subreddits with text-only posts will not produce images.
+- **Image does not refresh immediately**: The integration updates according to the configured interval (default 60 minutes).
+- **Enable Debug Logging**: To see detailed fetch and parsing logs, add the following to your `configuration.yaml` and restart Home Assistant:
+
+```yaml
+logger:
+  default: info
+  logs:
+    custom_components.reddit_images: debug
+```
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/my-new-feature`)
+3. Commit your changes
+4. Push to the branch (`git push origin feature/my-new-feature`)
+5. Open a Pull Request
+
 ## Support & Feedback
 
 Found a bug or have a suggestion? Please [open an issue](https://github.com/saihgupr/reddit_images/issues) to report it.
 
 If you like this integration, please give it a star on GitHub!
 
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/saihgupr)
+
 ## License
 
-MIT License
+[MIT License](LICENSE) © 2026 Saihgupr
