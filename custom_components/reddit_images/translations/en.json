@@ -2,20 +2,52 @@
     "config": {
         "step": {
             "user": {
-                "title": "Configure Rare Puppers",
-                "description": "Set up your Reddit image fetcher.",
+                "title": "Reddit app credentials",
+                "description": "Reddit no longer serves RSS feeds or anonymous JSON, so this integration uses the official API. Create a free app at https://www.reddit.com/prefs/apps (type: script), then paste its client ID and secret here.",
+                "data": {
+                    "client_id": "Client ID",
+                    "client_secret": "Client secret"
+                }
+            },
+            "subreddit": {
+                "title": "Subreddit settings",
+                "description": "Choose which subreddit to show and how often to refresh it.",
                 "data": {
                     "subreddit": "Subreddit (e.g., rarepuppers)",
-                    "limit": "Limit (Number of posts to scan)"
+                    "limit": "Limit (number of posts to scan)",
+                    "interval_minutes": "Interval (minutes)",
+                    "selection_mode": "Selection mode"
                 }
             }
         },
         "error": {
-            "cannot_connect": "Failed to connect",
+            "cannot_connect": "Could not reach Reddit. Check your connection and try again.",
+            "invalid_auth": "Reddit rejected those credentials. Check the client ID and secret.",
             "unknown": "Unexpected error"
         },
         "abort": {
-            "already_configured": "Device is already configured"
+            "already_configured": "That subreddit is already configured"
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Reddit Images options",
+                "description": "Update the Reddit app credentials or the subreddit settings.",
+                "data": {
+                    "client_id": "Client ID",
+                    "client_secret": "Client secret",
+                    "subreddit": "Subreddit (e.g., rarepuppers)",
+                    "limit": "Limit (number of posts to scan)",
+                    "interval_minutes": "Interval (minutes)",
+                    "selection_mode": "Selection mode"
+                }
+            }
+        },
+        "error": {
+            "cannot_connect": "Could not reach Reddit. Check your connection and try again.",
+            "invalid_auth": "Reddit rejected those credentials. Check the client ID and secret.",
+            "unknown": "Unexpected error"
         }
     }
 }

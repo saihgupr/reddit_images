@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.11] - 2026-11-20
+
+### Fixed
+- Restored image loading after Reddit shut down public `.rss` feeds on November 13, 2026. The integration now uses Reddit's official OAuth API with an app-only token instead of RSS.
+- Added client ID and client secret fields to the setup flow and a Configure dialog for existing installs.
+- Added clearer errors for rejected credentials and unreachable Reddit endpoints.
+- Image content type is now detected from the downloaded file instead of always assuming JPEG.
+
 ### Changed
 - README updated for the Home Assistant Marketplace (HACS was merged into Home Assistant as the Marketplace in 2026.11): new install steps, Marketplace badge, and refreshed feature and how-it-works notes.
 

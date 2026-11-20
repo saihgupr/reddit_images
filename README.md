@@ -22,7 +22,7 @@ Reddit Images is a Home Assistant integration that displays the top images from 
 - Configurable scan depth and refresh interval
 - Works with the `picture-entity` card out of the box
 - Add the integration multiple times for separate entities per subreddit
-- Reads Reddit's public Atom/RSS feeds, so no account, API key, or token is needed
+- Uses Reddit's official OAuth API with a free app you create once (no Reddit account password needed)
 - Brand icons included, so it shows up correctly in the Marketplace and in Devices & Services
 
 ## Installation
@@ -63,16 +63,24 @@ HACS was merged into Home Assistant as the Marketplace in 2026.11. Everything in
 
 ## Configuration
 
-1. Go to **Settings** → **Devices & services**
-2. Click **Add integration**
-3. Search for "Reddit Images"
-4. Configure:
+1. Create a free Reddit app so the integration can read public posts:
+   - Open <https://www.reddit.com/prefs/apps> while logged in to Reddit
+   - Select **create another app...**
+   - Name it `Home Assistant Reddit Images`, choose **script**, and set the redirect URI to `http://localhost:8080`
+   - Select **create app**
+   - Copy the client ID shown under the app name and the secret shown next to **secret**
+2. Go to **Settings** → **Devices & services**
+3. Click **Add integration**
+4. Search for "Reddit Images"
+5. Paste the client ID and client secret, then configure:
    - **Subreddit**: The subreddit to pull images from (e.g., `rarepuppers`, `earthporn`, `aww`)
    - **Limit**: Number of top posts to consider (default: 20)
    - **Interval (Minutes)**: How often to fetch a new image (default: 60)
    - **Selection Mode**:
      - *Random from Top*: Randomly picks an image from the top posts
      - *Top Post*: Always shows the #1 highest-upvoted image
+
+**Upgrading from 1.0.10 or older**: Reddit shut down its RSS feeds on November 13, 2026, and now rejects anonymous API calls. Open **Configure** on the existing entry and paste a client ID and secret from the app you created above.
 
 **Tip**: You can add the integration multiple times to create separate entities for different subreddits.
 
@@ -91,13 +99,14 @@ Replace `rarepuppers` with your configured subreddit name.
 
 ## How It Works
 
-1. Fetches the top posts from the configured subreddit (last 24 hours) via the public `.rss` feed
-2. Extracts the highest resolution image from each post, preferring direct `i.redd.it` links and falling back to preview images
-3. Handles single image posts, gallery posts, and video thumbnails, including `.jpg`, `.jpeg`, `.png`, `.gif`, and `.webp`
-4. Selects an image based on your chosen mode (random or top)
-5. Downloads it and refreshes at your configured interval
+1. Exchanges your Reddit app client ID and secret for an app-only OAuth token (refreshed automatically)
+2. Fetches the top posts of the last 24 hours from the configured subreddit through `oauth.reddit.com`
+3. Extracts the highest resolution image from each post, preferring direct `i.redd.it` links, then galleries, then preview images
+4. Handles single image posts, gallery posts, and video thumbnails, including `.jpg`, `.jpeg`, `.png`, `.gif`, and `.webp`
+5. Selects an image based on your chosen mode (random or top)
+6. Downloads it and refreshes at your configured interval
 
-Reddit returns `403 Forbidden` for unauthenticated `.json` requests, which is why the integration uses the public Atom/RSS feeds instead. No credentials or API keys are required.
+Reddit retired public `.rss` feeds on November 13, 2026 and returns `403 Forbidden` for anonymous `.json` requests, so the official OAuth API is the only supported way to read public listings without scraping.
 
 ## Supported Subreddits
 
@@ -111,6 +120,8 @@ Any public subreddit with image posts. Popular choices:
 ## Troubleshooting & Debugging
 
 - **No image displayed**: Verify the subreddit has public image submissions and is spelled correctly. Subreddits with text-only posts will not produce images.
+- **"Reddit rejected the app credentials"**: Reopen **Configure** and paste the client ID and secret again. Client IDs are short (about 14 characters); the secret is longer.
+- **Reddit error 401 or 403**: The app was deleted or its secret was reset on Reddit. Create a new app and update the integration.
 - **Image does not refresh immediately**: The integration updates according to the configured interval (default 60 minutes).
 - **Enable Debug Logging**: To see detailed fetch and parsing logs, add the following to your `configuration.yaml` and restart Home Assistant:
 
