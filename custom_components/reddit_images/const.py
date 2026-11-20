@@ -19,4 +19,4 @@ DEFAULT_SELECTION_MODE = MODE_RANDOM
 
 TOKEN_URL = "https://www.reddit.com/api/v1/access_token"
 API_URL = "https://oauth.reddit.com"
-USER_AGENT = "python:homeassistant.reddit_images:v1.0.11 (by /u/reddit_images)"
+USER_AGENT = "python:homeassistant.reddit_images:v1.1 (by /u/reddit_images)"

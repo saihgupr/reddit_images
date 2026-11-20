@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [1.0.11] - 2026-11-20
+## [1.1] - 2026-11-20
 
 ### Fixed
 - Restored image loading after Reddit shut down public `.rss` feeds on November 13, 2026. The integration now uses Reddit's official OAuth API with an app-only token instead of RSS.
