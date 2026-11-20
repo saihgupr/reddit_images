@@ -3,7 +3,7 @@
         "step": {
             "user": {
                 "title": "Reddit app credentials",
-                "description": "Reddit no longer serves RSS feeds or anonymous JSON, so this integration uses the official API. Create a free app at https://www.reddit.com/prefs/apps (type: script), then paste its client ID and secret here.",
+                "description": "Reddit no longer serves RSS feeds or anonymous JSON, so this integration uses the official API. Create a free Reddit app of type script in your Reddit app preferences, then paste its client ID and secret here. Setup steps are in the README.",
                 "data": {
                     "client_id": "Client ID",
                     "client_secret": "Client secret"
