@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.3] - 2026-11-24
+
+### Added
+- A second data source: the community Arctic Shift archive, which needs no Reddit account or app. It is now the default when no working Reddit app is configured.
+- A **Data source** option (Automatic, Archive only, Reddit API only). Automatic uses a working Reddit app when there is one and falls back to the archive when Reddit rejects the credentials, so images keep loading instead of the card going blank.
+- Client ID and client secret are now optional, so the integration can be set up with no Reddit account at all.
+
+### Changed
+- The Repairs issue for rejected credentials now says images are still being served by the archive.
+- The archive source reads the most recent 100 posts and ranks them by score, since the archive's search only sorts by date.
+
+## [1.2] - 2026-11-23
+
+### Added
+- A Repairs issue is raised when Reddit rejects the app credentials, with the steps to fix them.
+- The last downloaded image is saved and restored after a restart, so the card keeps showing it while Reddit is unreachable.
+
+### Fixed
+- Token and listing requests now retry transient network errors (2 seconds, then 5 seconds) before giving up.
+
 ## [1.1] - 2026-11-20
 
 ### Fixed

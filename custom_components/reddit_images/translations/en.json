@@ -2,11 +2,12 @@
     "config": {
         "step": {
             "user": {
-                "title": "Reddit app credentials",
-                "description": "Reddit no longer serves RSS feeds or anonymous JSON, so this integration uses the official API. Create a free Reddit app of type script in your Reddit app preferences, then paste its client ID and secret here. Setup steps are in the README.",
+                "title": "Data source",
+                "description": "Reddit closed self-service API app creation in 2025, so a new Reddit app will not be approved for most personal setups. Leave the credentials empty to use the community Arctic Shift archive, which needs no account, or paste an approved app's client ID and secret to read listings straight from Reddit.",
                 "data": {
-                    "client_id": "Client ID",
-                    "client_secret": "Client secret"
+                    "source": "Data source",
+                    "client_id": "Client ID (optional)",
+                    "client_secret": "Client secret (optional)"
                 }
             },
             "subreddit": {
@@ -23,6 +24,7 @@
         "error": {
             "cannot_connect": "Could not reach Reddit. Check your connection and try again.",
             "invalid_auth": "Reddit rejected those credentials. Check the client ID and secret.",
+            "credentials_required": "The Reddit API source needs a client ID and secret. Clear the source or use Automatic.",
             "unknown": "Unexpected error"
         },
         "abort": {
@@ -33,10 +35,11 @@
         "step": {
             "init": {
                 "title": "Reddit Images options",
-                "description": "Update the Reddit app credentials or the subreddit settings.",
+                "description": "Update the data source, the Reddit app credentials or the subreddit settings. Leave the credentials empty to read from the community archive.",
                 "data": {
-                    "client_id": "Client ID",
-                    "client_secret": "Client secret",
+                    "source": "Data source",
+                    "client_id": "Client ID (optional)",
+                    "client_secret": "Client secret (optional)",
                     "subreddit": "Subreddit (e.g., rarepuppers)",
                     "limit": "Limit (number of posts to scan)",
                     "interval_minutes": "Interval (minutes)",
@@ -47,7 +50,14 @@
         "error": {
             "cannot_connect": "Could not reach Reddit. Check your connection and try again.",
             "invalid_auth": "Reddit rejected those credentials. Check the client ID and secret.",
+            "credentials_required": "The Reddit API source needs a client ID and secret. Clear the source or use Automatic.",
             "unknown": "Unexpected error"
+        }
+    },
+    "issues": {
+        "invalid_auth": {
+            "title": "Reddit rejected the app credentials",
+            "description": "Reddit rejected the app credentials for r/{subreddit}. The app may have been deleted or revoked, its secret reset, or the account that owns it suspended. Reddit Images keeps working: in Automatic mode it reads from the Arctic Shift archive, and images are still shown. Clear the client ID and secret in Configure to use the archive only, or request Data API access from Reddit and paste new credentials."
         }
     }
 }
